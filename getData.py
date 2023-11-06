@@ -7,7 +7,7 @@ import pandas as pd
 import urllib, os, sys
 
 
-def downloadTable(url, name, year):
+def downloadTable(url, name, year, output_dir):
     # Scrape the HTML at the url
     r = requests.get(url)
     
@@ -31,7 +31,7 @@ def downloadTable(url, name, year):
         flname = col[0]['href']
         flnames = col[0]['href'].split('/' )
     
-        dir = name + '/' + year
+        dir = os.path.join(output_dir, name, year)
     
         if not os.path.exists(dir):
             os.makedirs(dir)
@@ -42,7 +42,7 @@ def downloadTable(url, name, year):
 
     print '->'
 
-def downloadAllAnimals(url):
+def downloadAllAnimals(url, output_dir=None):
     r = requests.get(url)
 
     soup = BeautifulSoup(r.text, 'lxml')
@@ -73,9 +73,10 @@ def downloadAllAnimals(url):
             
             print "         " + "\t" + year
 
-            downloadTable("http://cis.whoi.edu/science/B/whalesounds/" + urlFin, name, year)
+            downloadTable("http://cis.whoi.edu/science/B/whalesounds/" + urlFin, name, year, output_dir)
 
 
-url = 'http://cis.whoi.edu/science/B/whalesounds/fullCuts.cfm'
-downloadAllAnimals(url)
+# url = 'http://cis.whoi.edu/science/B/whalesounds/fullCuts.cfm'
+url = 'http://cis.whoi.edu/science/B/whalesounds/index.cfm'
+downloadAllAnimals(url, output_dir=os.path.join('ds', 'audio', 'Bioacoustics', 'Watkins_Marine_Mammal_Sound_Database'))
 
