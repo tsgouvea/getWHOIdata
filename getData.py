@@ -78,6 +78,5 @@ def downloadAllAnimals(url, output_dir=None):
 
 # url = 'http://cis.whoi.edu/science/B/whalesounds/fullCuts.cfm'
 url = 'http://cis.whoi.edu/science/B/whalesounds/index.cfm'
-assert False
 downloadAllAnimals(url, output_dir=os.path.join('ds', 'audio', 'Bioacoustics', 'Watkins_Marine_Mammal_Sound_Database'))
 
