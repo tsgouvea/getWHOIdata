@@ -40,7 +40,7 @@ def downloadTable(url, name, year, output_dir):
         sys.stdout.flush()
         wavfile.retrieve( 'http://cis.whoi.edu/' + flname , dir + '/' + flnames[5] )
 
-    print '->'
+    print('->')
 
 def downloadAllAnimals(url, output_dir=None):
     r = requests.get(url)
@@ -54,7 +54,7 @@ def downloadAllAnimals(url, output_dir=None):
         url_end = species['value']
         name = species.string.strip()
         
-        print "Downloading " + name
+        print("Downloading " + name)
         
         name = name.replace(' ', '')
         name = name.replace('-', '_')
@@ -71,12 +71,13 @@ def downloadAllAnimals(url, output_dir=None):
             urlFin = years['value']
             year = years.string.strip()
             
-            print "         " + "\t" + year
+            print("         " + "\t" + year)
 
             downloadTable("http://cis.whoi.edu/science/B/whalesounds/" + urlFin, name, year, output_dir)
 
 
 # url = 'http://cis.whoi.edu/science/B/whalesounds/fullCuts.cfm'
 url = 'http://cis.whoi.edu/science/B/whalesounds/index.cfm'
+assert False
 downloadAllAnimals(url, output_dir=os.path.join('ds', 'audio', 'Bioacoustics', 'Watkins_Marine_Mammal_Sound_Database'))
 
