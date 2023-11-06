@@ -3,4 +3,5 @@ srun \
   --container-workdir="`pwd`" \
   --container-mounts=/netscratch/$USER:/netscratch/$USER,/ds:/ds:ro,"`pwd`":"`pwd`" \
   --task-prolog="`pwd`/install.sh" \
+  -p A100-IML \
   python getData.py
